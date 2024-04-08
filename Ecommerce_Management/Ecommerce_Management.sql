@@ -159,6 +159,8 @@ INSERT INTO cart_item (quantity_wished, date_added, cart_id, product_id, purchas
 (6, '2022-12-09', "C012300002", "PDAZ000001", "Yes"),
 (2, '2022-12-10', "C012300001", "PDAZ000002", "No");
 
+SELECT * FROM cart_item;
+
 
 
 
