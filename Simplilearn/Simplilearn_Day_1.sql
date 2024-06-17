@@ -30,13 +30,13 @@ ALTER TABLE employee
 RENAME TO employee_data;
 
 -- Generated Columns in MySQL --
--- ALTER TABLE employee_data
--- ADD FULL_NAME VARCHAR(100)
--- GENERATED ALWAYS AS (CONCAT(FIRST_NAME, ' ', LAST_NAME));
+ALTER TABLE employee_data
+ADD FULL_NAME VARCHAR(100)
+GENERATED ALWAYS AS (CONCAT(FIRST_NAME, ' ', LAST_NAME));
 
 SELECT * FROM employee_data;
--- ALTER TABLE employee_data
--- DROP COLUMN FULL_NAME; 
+ALTER TABLE employee_data
+DROP COLUMN FULL_NAME; 
 
 
 
