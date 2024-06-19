@@ -8,4 +8,9 @@ SELECT * FROM artist;
 
 -- CANVAS_SIZE TABLE --
 SELECT * FROM canvas_size;
+
+-- IMAGE_LINK TABLE --
+SELECT * FROM image_link;
+
+
  
