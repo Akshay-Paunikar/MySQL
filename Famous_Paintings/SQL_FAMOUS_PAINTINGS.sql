@@ -5,3 +5,7 @@ SHOW TABLES;
 
 -- ARTIST TABLE --
 SELECT * FROM artist;
+
+-- CANVAS_SIZE TABLE --
+SELECT * FROM canvas_size;
+ 
