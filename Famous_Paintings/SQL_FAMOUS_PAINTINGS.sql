@@ -18,3 +18,5 @@ SELECT * FROM museum;
 -- MUSEUM_HOURS TABLE --
 SELECT * FROM museum_hours;
 
+-- PRODUCT_SIZE TABLE --
+SELECT * FROM product_size;
