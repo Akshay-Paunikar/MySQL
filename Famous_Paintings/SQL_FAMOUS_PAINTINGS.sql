@@ -12,5 +12,7 @@ SELECT * FROM canvas_size;
 -- IMAGE_LINK TABLE --
 SELECT * FROM image_link;
 
+-- MUSEUM TABLE --
+SELECT * FROM museum;
 
  
