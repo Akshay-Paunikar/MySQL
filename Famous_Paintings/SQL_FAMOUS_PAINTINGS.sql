@@ -15,4 +15,6 @@ SELECT * FROM image_link;
 -- MUSEUM TABLE --
 SELECT * FROM museum;
 
- 
+-- MUSEUM_HOURS TABLE --
+SELECT * FROM museum_hours;
+
