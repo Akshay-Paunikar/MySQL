@@ -5,18 +5,10 @@ SHOW TABLES;
 
 -- ARTIST TABLE --
 SELECT * FROM artist;
-
--- CANVAS_SIZE TABLE --
 SELECT * FROM canvas_size;
-
--- IMAGE_LINK TABLE --
 SELECT * FROM image_link;
-
--- MUSEUM TABLE --
 SELECT * FROM museum;
-
--- MUSEUM_HOURS TABLE --
 SELECT * FROM museum_hours;
-
--- PRODUCT_SIZE TABLE --
 SELECT * FROM product_size;
+SELECT * FROM subject;
+SELECT * FROM work;
