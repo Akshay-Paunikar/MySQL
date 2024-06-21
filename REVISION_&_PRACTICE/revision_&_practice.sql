@@ -78,3 +78,46 @@ DESCRIBE emp_records; -- To analyze the structure of table
 DESCRIBE emp_records_2;
 DESCRIBE emp_records_3;
 
+/* Modifying Table Structure - ALTER STATEMENT */
+
+SELECT * FROM emp_records;
+
+ALTER TABLE emp_records
+ADD role VARCHAR(100); -- Adding columns (single)
+
+ALTER TABLE emp_records
+ADD department VARCHAR(100),
+ADD manager_id VARCHAR(4); -- Adding multiple columns
+
+DESCRIBE emp_records;
+
+ALTER TABLE emp_records
+MODIFY gender VARCHAR(1) NOT NULL; -- Modify single column
+
+ALTER TABLE emp_records
+MODIFY department VARCHAR(100) NOT NULL,
+MODIFY manager_id VARCHAR(4) NOT NULL; -- Modify multiple columns
+
+ALTER TABLE emp_records
+CHANGE COLUMN role job_role VARCHAR(100); -- Rename column
+
+ALTER TABLE emp_records
+CHANGE COLUMN emp_id emp_key VARCHAR(5),
+CHANGE COLUMN manager_id manager_key VARCHAR(5); -- Rename multiple columns
+
+ALTER TABLE emp_records
+CHANGE COLUMN emp_key emp_id VARCHAR(5),
+CHANGE COLUMN manager_key manager_id VARCHAR(5); -- reverting to original names
+
+ALTER TABLE emp_records
+DROP COLUMN job_role; -- Drop single column
+
+ALTER TABLE emp_records
+DROP COLUMN department, 
+DROP COLUMN manager_id; -- Drop multiple column
+
+ALTER TABLE emp_records
+RENAME TO emp_data; -- Rename table name
+
+SELECT * FROM emp_data;
+DESCRIBE emp_data;
