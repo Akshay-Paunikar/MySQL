@@ -121,3 +121,22 @@ RENAME TO emp_data; -- Rename table name
 
 SELECT * FROM emp_data;
 DESCRIBE emp_data;
+
+ALTER TABLE emp_data
+ADD full_name VARCHAR(100)
+GENERATED ALWAYS AS (CONCAT(first_name, ' ', last_name)); -- Generated Columns
+
+TRUNCATE TABLE emp_data; -- To delete all records from table
+
+SHOW TABLES;
+
+DROP TABLE IF EXISTS engine; -- To drop single column
+
+DROP TABLE IF EXISTS 
+emp_records_2, 
+emp_records_3; -- To drop multiple column
+
+
+
+
+
