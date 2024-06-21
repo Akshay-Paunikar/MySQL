@@ -1,3 +1,5 @@
+-- DATABASE MANIPULATION -- 
+
 CREATE DATABASE IF NOT EXISTS revision_practice;
 USE revision_practice;
 SHOW DATABASES;
