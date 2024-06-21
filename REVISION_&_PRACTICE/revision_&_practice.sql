@@ -136,7 +136,32 @@ DROP TABLE IF EXISTS
 emp_records_2, 
 emp_records_3; -- To drop multiple column
 
+/* Inserting Data in Tables */
 
+CREATE TABLE emp_info(
+emp_id VARCHAR(4) NOT NULL,
+first_name VARCHAR(100) NOT NULL,
+last_name VARCHAR(100),
+gender VARCHAR(1),
+role VARCHAR(100),
+dept VARCHAR(100),
+manager_id VARCHAR(4),
+CHECK(gender IN('M', 'F', 'O'))
+)ENGINE = INNODB;
+
+SHOW TABLES;
+DESCRIBE emp_info;
+
+INSERT INTO emp_info(
+emp_id, first_name, last_name, gender, role, dept, manager_id)
+VALUES
+("E260", "Roy", "Collins", "M", "SENIOR DATA SCIENTIST", "RETAIL", "E583"),
+("E620", "Katrina", "Allen", "F", "JUNIOR DATA SCIENTIST", "RETAIL", "E612"),
+("E583", "Janet", "Hale", "F", "MANAGER", "RETAIL", "E002"),
+("E612", "Tracy", "Norris", "F", "ASSISTANT MANAGER", "RETAIL", "E002"),
+("E002", "Cynthia", "Brooks", "F", "PRESIDENT", "ALL", "E001");
+
+SELECT * FROM emp_info;
 
 
 
