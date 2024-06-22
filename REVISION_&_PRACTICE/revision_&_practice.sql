@@ -166,4 +166,82 @@ SELECT * FROM emp_info;
 --------------------------------
 -- FILTERING DATA FROM TABLES --
 --------------------------------
+/*
+Following are the most important SQL commands for filtering data from tables:
+1. WHERE
+2. SELECT DISTINCT
+3. AND
+4. OR
+5. NOT
+6. IN
+7. NOT IN
+8. BETWEEN
+9. LIKE
+10. LIMIT
+11. IS NULL
+*/
+
+SELECT * FROM emp_info;
+
+/* WHERE Clause */
+-- Find all the details where role is manager --
+SELECT * FROM emp_info
+WHERE role = 'MANAGER';
+
+/* DISTINCT Clause */ 
+-- Find all the unique roles from emp_info table --
+SELECT DISTINCT(role) AS unique_roles
+FROM emp_info;
+
+/* AND Operator */
+-- Find out details of female employees working in retail department --
+SELECT * FROM emp_info
+WHERE gender = 'F'
+AND dept = 'RETAIL';
+
+/* OR Operator */
+-- Find all the employees who are either Male or working in retail department --
+SELECT * FROM emp_info
+WHERE gender = 'M'
+OR dept = 'RETAIL';
+
+/* IN Operator */
+-- Find the details of all junior and senior data scientist profiles --
+SELECT * FROM emp_info
+WHERE role 
+IN ('JUNIOR DATA SCIENTIST', 'SENIOR DATA SCIENTIST');
+
+/* NOT IN Operator */
+-- Find the details of all except for junior and senior data scientist profiles --
+SELECT * FROM emp_info
+WHERE role 
+NOT IN ('JUNIOR DATA SCIENTIST', 'SENIOR DATA SCIENTIST');
+
+/* BETWEEN Operator */
+-- Find employees having 7 to 14 years of experience --
+TRUNCATE TABLE emp_info;
+ALTER TABLE emp_info
+ADD experience INTEGER;
+INSERT INTO emp_info
+VALUES
+("E260", "Roy", "Collins", "M", "SENIOR DATA SCIENTIST", "RETAIL", "E583", 7),
+("E620", "Katrina", "Allen", "F", "JUNIOR DATA SCIENTIST", "RETAIL", "E612", 2),
+("E583", "Janet", "Hale", "F", "MANAGER", "RETAIL", "E002", 14),
+("E612", "Tracy", "Norris", "F", "ASSISTANT MANAGER", "RETAIL", "E002", 13),
+("E002", "Cynthia", "Brooks", "F", "PRESIDENT", "ALL", "E001", 17);
+SELECT * FROM emp_info
+WHERE experience
+BETWEEN 7 AND 14;
+
+
+
+
+
+
+
+
+
+
+
+
 
