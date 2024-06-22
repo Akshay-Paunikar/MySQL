@@ -163,5 +163,7 @@ VALUES
 
 SELECT * FROM emp_info;
 
-
+--------------------------------
+-- FILTERING DATA FROM TABLES --
+--------------------------------
 
