@@ -233,9 +233,60 @@ SELECT * FROM emp_info
 WHERE experience
 BETWEEN 7 AND 14;
 
+/* LIKE Operator & WILDCARDS */
+-- MySQL Supports 2 wildcards: 
+-- 1. Percentage (%): It matches any string of zero or more characters
+-- 2. Underscore (_): It matches any single character
 
+INSERT INTO emp_info(
+emp_id, first_name, last_name, gender, role, dept, manager_id, experience)
+VALUES
+("E052", "Dianna", "Wilson", "F", "SENIOR DATA SCIENTIST", "HEALTHCARE", "E083", 6),
+("E505", "Chad", "Wilson", "M", "ASSOCIATE DATA SCIENTIST", "HEALTHCARE","E083", 5),
+("E083", "Patrick", "Voltz", "M", "MANAGER", "HEALTHCARE", "E002", 15);
 
+-- Find the employees whose first name begins with letter 'C'
+SELECT * FROM emp_info
+WHERE first_name
+LIKE 'C%';
 
+-- Find the employees whose last name ends with letter 'n'
+SELECT * FROM emp_info
+WHERE last_name
+LIKE '%n';
+
+-- Find the employees whose last name starts with letter 'w' and ends with letter 'n'
+SELECT * FROM emp_info
+WHERE last_name
+LIKE 'W%%n';
+
+SELECT * FROM emp_info
+WHERE first_name
+LIKE '__y';
+
+SELECT * FROM emp_info
+WHERE last_name
+LIKE 'W%___on';
+
+/* LIMIT Operator */
+-- Find the details of the first three employees with the least experience from the employee table.
+SELECT * FROM emp_info
+ORDER BY experience ASC
+LIMIT 3;
+
+/* IS NULL Operator */
+INSERT INTO emp_info(
+emp_id, first_name, last_name, gender, role, dept, experience)
+VALUES
+("E001", "Arthur", "Black", "M", "CEO", "ALL", 10);
+
+SELECT * FROM emp_info
+WHERE manager_id IS NULL;
+
+/* IS NOT NULL Operator */
+
+SELECT * FROM emp_info
+WHERE manager_id IS NOT NULL;
 
 
 
