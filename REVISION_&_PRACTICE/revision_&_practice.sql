@@ -295,7 +295,26 @@ WHERE manager_id IS NOT NULL;
 /* ORDER BY Clause */
 -- Provide details of all employees with their experience in a descending order.
 SELECT * FROM emp_info
-ORDER BY experience DESC;
+ORDER BY dept DESC;
+
+-- ----------------------
+-- GROUPING TABLE DATA --
+-- ----------------------
+
+/* GROUP BY Clause */
+SELECT * FROM emp_info
+GROUP BY dept;
+
+SELECT gender, AVG(experience) AS avg_exp
+FROM emp_info
+GROUP BY gender;
+
+/* HAVING Clause */
+SELECT * FROM emp_info
+GROUP BY dept
+HAVING experience >= 5 
+AND experience <= 10;
+
 
 
 
