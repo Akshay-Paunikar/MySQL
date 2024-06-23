@@ -1,6 +1,6 @@
----------------------------
+-- ------------------------
 -- DATABASE MANIPULATION --
---------------------------- 
+-- ------------------------ 
 
 CREATE DATABASE IF NOT EXISTS revision_practice;
 USE revision_practice;
@@ -9,9 +9,9 @@ SELECT DATABASE(); -- Displays Current Database Selected
 CREATE DATABASE deletethis;
 DROP DATABASE IF EXISTS deletethis;
 
----------------------
+-- ------------------
 -- STORAGE ENGINES --
----------------------
+-- ------------------
 -- INNODB, MyISAM, MERGE (MRG_MyISAM), CSV 
 
 SET DEFAULT_STORAGE_ENGINE = INNODB;
@@ -31,9 +31,9 @@ CHECK(gender IN ('M', 'F', 'O'))
 
 ALTER TABLE engine ENGINE = MERGE; -- For changing the storage engine of table 
 
---------------------------------
+-- -----------------------------
 -- CREATING & MANAGING TABLES --
---------------------------------
+-- -----------------------------
 
 CREATE TABLE IF NOT EXISTS emp_records(
 emp_id VARCHAR(4) NOT NULL,
@@ -163,9 +163,9 @@ VALUES
 
 SELECT * FROM emp_info;
 
---------------------------------
+-- -----------------------------
 -- FILTERING DATA FROM TABLES --
---------------------------------
+-- -----------------------------
 /*
 Following are the most important SQL commands for filtering data from tables:
 1. WHERE
@@ -288,6 +288,14 @@ WHERE manager_id IS NULL;
 SELECT * FROM emp_info
 WHERE manager_id IS NOT NULL;
 
+-- ----------------------
+-- SORTING TABLE DATA --
+-- ----------------------
+
+/* ORDER BY Clause */
+-- Provide details of all employees with their experience in a descending order.
+SELECT * FROM emp_info
+ORDER BY experience DESC;
 
 
 
