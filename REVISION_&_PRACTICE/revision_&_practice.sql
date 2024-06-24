@@ -315,6 +315,109 @@ GROUP BY dept
 HAVING experience >= 5 
 AND experience <= 10;
 
+-- ---------
+-- ROLLUP --
+-- ---------
+/*
+The GROUP BY clause permits a WITH ROLLUP modifier that causes summary output to include extra rows that represent higher-level 
+(that is, super-aggregate) summary operations. ROLLUP thus enables you to answer questions at multiple levels of analysis with a single query.
+
+ROLLUP does not create all possible groupings based on the dimensions columns.
+ROLLUP provides a shorthand for defining multiple grouping sets.alter
+
+An extension of GROUP BY Clause
+Multiple Sets generation
+Extra rows represent subtotals
+*/
+CREATE TABLE sales(
+year INTEGER,
+country VARCHAR(10),
+product VARCHAR(10),
+profit INT
+) ENGINE = InnoDB;
+
+INSERT INTO sales (year, country, product, profit)
+VALUES
+(2019, 'Germany', 'Laptop', FLOOR(RAND() * 1000) + 500),
+(2019, 'Germany', 'Desktop', FLOOR(RAND() * 1000) + 400),
+(2019, 'Germany', 'Tablet', FLOOR(RAND() * 1000) + 300),
+(2019, 'France', 'Laptop', FLOOR(RAND() * 1000) + 600),
+(2019, 'France', 'Desktop', FLOOR(RAND() * 1000) + 450),
+(2019, 'France', 'Tablet', FLOOR(RAND() * 1000) + 350),
+(2019, 'Italy', 'Laptop', FLOOR(RAND() * 1000) + 550),
+(2019, 'Italy', 'Desktop', FLOOR(RAND() * 1000) + 420),
+(2019, 'Italy', 'Tablet', FLOOR(RAND() * 1000) + 320),
+(2020, 'Germany', 'Laptop', FLOOR(RAND() * 1000) + 510),
+(2020, 'Germany', 'Desktop', FLOOR(RAND() * 1000) + 410),
+(2020, 'Germany', 'Tablet', FLOOR(RAND() * 1000) + 320),
+(2020, 'France', 'Laptop', FLOOR(RAND() * 1000) + 620),
+(2020, 'France', 'Desktop', FLOOR(RAND() * 1000) + 460),
+(2020, 'France', 'Tablet', FLOOR(RAND() * 1000) + 370),
+(2020, 'Italy', 'Laptop', FLOOR(RAND() * 1000) + 530),
+(2020, 'Italy', 'Desktop', FLOOR(RAND() * 1000) + 430),
+(2020, 'Italy', 'Tablet', FLOOR(RAND() * 1000) + 340),
+(2021, 'Germany', 'Laptop', FLOOR(RAND() * 1000) + 520),
+(2021, 'Germany', 'Desktop', FLOOR(RAND() * 1000) + 420),
+(2021, 'Germany', 'Tablet', FLOOR(RAND() * 1000) + 330),
+(2021, 'France', 'Laptop', FLOOR(RAND() * 1000) + 630),
+(2021, 'France', 'Desktop', FLOOR(RAND() * 1000) + 470),
+(2021, 'France', 'Tablet', FLOOR(RAND() * 1000) + 380),
+(2021, 'Italy', 'Laptop', FLOOR(RAND() * 1000) + 540),
+(2021, 'Italy', 'Desktop', FLOOR(RAND() * 1000) + 440),
+(2021, 'Italy', 'Tablet', FLOOR(RAND() * 1000) + 350),
+(2022, 'Germany', 'Laptop', FLOOR(RAND() * 1000) + 530),
+(2022, 'Germany', 'Desktop', FLOOR(RAND() * 1000) + 430),
+(2022, 'Germany', 'Tablet', FLOOR(RAND() * 1000) + 340),
+(2022, 'France', 'Laptop', FLOOR(RAND() * 1000) + 640),
+(2022, 'France', 'Desktop', FLOOR(RAND() * 1000) + 480),
+(2022, 'France', 'Tablet', FLOOR(RAND() * 1000) + 390),
+(2022, 'Italy', 'Laptop', FLOOR(RAND() * 1000) + 550),
+(2022, 'Italy', 'Desktop', FLOOR(RAND() * 1000) + 450),
+(2022, 'Italy', 'Tablet', FLOOR(RAND() * 1000) + 360),
+(2023, 'Germany', 'Laptop', FLOOR(RAND() * 1000) + 540),
+(2023, 'Germany', 'Desktop', FLOOR(RAND() * 1000) + 440),
+(2023, 'Germany', 'Tablet', FLOOR(RAND() * 1000) + 350),
+(2023, 'France', 'Laptop', FLOOR(RAND() * 1000) + 650),
+(2023, 'France', 'Desktop', FLOOR(RAND() * 1000) + 490),
+(2023, 'France', 'Tablet', FLOOR(RAND() * 1000) + 400),
+(2023, 'Italy', 'Laptop', FLOOR(RAND() * 1000) + 560),
+(2023, 'Italy', 'Desktop', FLOOR(RAND() * 1000) + 460),
+(2023, 'Italy', 'Tablet', FLOOR(RAND() * 1000) + 370);
+
+SELECT * FROM sales;
+
+-- determine the total profit summed over all years
+SELECT year, SUM(profit) AS profit
+FROM sales
+GROUP BY year WITH ROLLUP;
+
+-- 1. Query to Calculate Total Profit by Year and Country
+SELECT year, country, SUM(profit) AS total_profit
+FROM sales
+GROUP BY year, country WITH ROLLUP;
+
+-- 2. Query to Calculate Total Profit by Year and Product
+SELECT year, product, SUM(profit) AS total_profit
+FROM sales
+GROUP BY year, product WITH ROLLUP;
+
+-- 3. Query to Calculate Total Profit by Country and Product
+SELECT country, product, SUM(profit) AS total_profit
+FROM sales
+GROUP BY country, product WITH ROLLUP;
+
+-- 4. Query to Calculate Grand Total Profit Across All Combinations
+SELECT year, country, product, SUM(profit) AS profit
+FROM sales
+GROUP BY year, country, product WITH ROLLUP;
+
+-- 5. Query to Filter and Calculate Subtotals
+SELECT year, country, product, SUM(profit) AS profit
+FROM sales
+WHERE year IN (2020, 2021)
+GROUP BY year, country, product WITH ROLLUP;
+
+
 
 
 
