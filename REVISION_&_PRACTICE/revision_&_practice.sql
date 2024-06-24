@@ -417,12 +417,32 @@ FROM sales
 WHERE year IN (2020, 2021)
 GROUP BY year, country, product WITH ROLLUP;
 
+-- ----------------
+-- GROUPING SETS --
+-- ----------------
+/*
+GROUPING SETS is another SQL feature that allows you to specify multiple groupings within a single query, producing multiple levels of grouping and subtotals.
+A grouping set is a set of columns by which you group using the GROUP BY clause. 
+Normally, a single aggregate query defines a single grouping set. 
+The GROUPING SETS option defines multiple grouping sets within the same query.
 
+NOTE: In MySQL, you typically achieve similar functionality using UNION ALL to combine results from multiple GROUP BY queries or by using GROUP BY with ROLLUP 
+for hierarchical aggregation.
+*/
 
-
-
-
-
-
-
+SELECT 
+    year,
+    country,
+    SUM(profit) AS total_profit
+FROM 
+    sales
+GROUP BY year, country
+UNION ALL
+SELECT 
+    country,
+    product,
+    SUM(profit) AS total_profit
+FROM 
+    sales
+GROUP BY country, product;
 
