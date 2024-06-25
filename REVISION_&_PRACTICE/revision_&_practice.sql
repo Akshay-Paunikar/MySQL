@@ -446,3 +446,57 @@ FROM
     sales
 GROUP BY country, product;
 
+-- ---------------------------------------------------
+-- WORKING WITH OPERATORS, CONSTRAINTS & DATA TYPES --
+-- ---------------------------------------------------
+/* SQL OPERATORS */
+/*
+An operator is a reserved word or character used with the WHERE clause of an SQL statement.
+It specifies a condition in the SQL statement.
+*/
+/* ARITHMETIC OPERATORS */
+/*
++ Addition, - Subtraction, * Multiplication, / Division, % Modulus
+*/
+
+CREATE TABLE emp_table(
+emp_id INTEGER NOT NULL,
+first_name VARCHAR(10),
+last_name VARCHAR(10),
+salary INTEGER NOT NULL,
+bonus INTEGER NOT NULL,
+PRIMARY KEY(emp_id)
+) ENGINE = InnoDB;
+
+SELECT * FROM emp_table;
+DESCRIBE emp_table;
+
+INSERT INTO emp_table(emp_id, first_name, last_name, salary, bonus)
+VALUES
+(1134, 'Mark', 'Jacobs', 20000, 1500),
+(1256, 'John', 'Barter', 25000, 1000),
+(1277, 'Michael', 'Scar', 22000, 1000),
+(1300, 'Dan', 'Harris', 30000, 2000);
+
+-- ADDITION --
+SELECT emp_id, first_name, last_name, salary + bonus AS total_income
+FROM emp_table;
+
+SELECT *, salary + bonus AS total_income
+FROM emp_table;
+
+-- SUBTRACTION --
+SELECT *, salary + bonus - (salary * 0.05) AS total_income
+FROM emp_table;
+
+-- MULTIPLICATION --
+SELECT *, salary + (salary * 0.25) + bonus AS total_income
+FROM emp_table;
+
+-- DIVISION --
+SELECT *, salary - (salary / 2) + bonus AS total_income
+FROM emp_table;
+
+
+
+
