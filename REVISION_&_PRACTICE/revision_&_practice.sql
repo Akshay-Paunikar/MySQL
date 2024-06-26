@@ -537,6 +537,18 @@ WHERE dept = 'HEALTHCARE';
 SELECT * FROM emp_info
 WHERE dept <> 'ALL';
 
+/* COMPOUND OPERATORS */
+/*
++= --> Add equals,
+-= --> Subtract equals,
+*= --> Multiply equals
+/= --> Divide equals
+%= --> Modulo equals
+&= --> Bitwise AND equals
+^-= --> Bitwise exclusive equals
+|*= --> Bitwise exclusive OR equals
+*/
+
 
 
 
