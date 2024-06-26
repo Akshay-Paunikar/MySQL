@@ -617,6 +617,22 @@ SHOW INDEXES FROM revision_practice.hr_data;
 
 DROP INDEX id_idx ON revision_practice.hr_data;
 
+-- ----------------------------
+-- ORDER of EXECUTION in SQL --
+-- ----------------------------
+/*
+ - FROM
+ - JOIN
+ - WHERE
+ - GROUP BY
+ - HAVING
+ - SELECT
+ - DISTINCT
+ - ORDER BY
+ - LIMIT
+ - OFFSET
+*/
+
 
 
 
