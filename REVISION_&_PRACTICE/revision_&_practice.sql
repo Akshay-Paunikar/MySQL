@@ -548,6 +548,27 @@ WHERE dept <> 'ALL';
 |*= --> Bitwise exclusive OR equals
 */
 
+/* LOGICAL OPERATORS */
+/* AND, OR, BETWEEN, NOT, LIKE */
+
+SELECT * FROM emp_info
+WHERE gender = 'F'
+AND experience >= 10;
+
+SELECT * FROM emp_info
+WHERE gender = 'F'
+OR dept = 'RETAIL';
+
+SELECT * FROM emp_info
+WHERE experience
+BETWEEN 10 AND 15;
+
+SELECT * FROM emp_info
+WHERE NOT dept = 'ALL';
+
+SELECT * FROM emp_info
+WHERE first_name 
+LIKE 'C%';
 
 
 
