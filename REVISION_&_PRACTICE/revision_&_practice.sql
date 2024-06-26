@@ -573,8 +573,14 @@ LIKE 'C%';
 -- --------------------
 -- INDEXING in MySQL --
 -- --------------------
+/*
+MySQL indexes sort data in a sequential and logical order.
+Indexes are used to find rows with specific column values quickly.
 
-
+There are two ways to create an INDEX:
+- Before the table is created
+- After the table is created
+*/
 
 
 
