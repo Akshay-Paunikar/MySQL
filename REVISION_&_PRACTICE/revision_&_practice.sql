@@ -581,11 +581,41 @@ There are two ways to create an INDEX:
 - Before the table is created
 - After the table is created
 */
+-- extract employees who are manager from hr_data
+SELECT emp_id, first_name, last_name
+FROM hr_data
+WHERE role = 'MANAGER';
+
+-- If you want to check how MySQL performs the previous query internally, execute the following query:
+EXPLAIN SELECT emp_id, first_name, last_name
+FROM hr_data
+WHERE role = 'MANAGER';
+
+-- create an index for columns role and emp_id
+ALTER TABLE revision_practice.hr_data
+MODIFY role VARCHAR(100),
+MODIFY emp_id VARCHAR(100),
+MODIFY first_name VARCHAR(100),
+MODIFY last_name VARCHAR(100),
+MODIFY gender VARCHAR(10),
+MODIFY dept VARCHAR(100),
+MODIFY exp INTEGER,
+MODIFY country  VARCHAR(100),
+MODIFY continent VARCHAR(100),
+MODIFY salary INTEGER,
+MODIFY emp_rating INTEGER;
 
 
+CREATE INDEX role_idx ON revision_practice.hr_data (role);
+CREATE INDEX id_idx ON revision_practice.hr_data (emp_id);
 
+EXPLAIN SELECT emp_id, first_name, last_name
+FROM hr_data
+WHERE role = 'MANAGER';
 
+SHOW INDEXES FROM revision_practice.hr_data;
 
+DROP INDEX id_idx ON revision_practice.hr_data;
 
 
 
