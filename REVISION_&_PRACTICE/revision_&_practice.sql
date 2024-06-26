@@ -570,6 +570,10 @@ SELECT * FROM emp_info
 WHERE first_name 
 LIKE 'C%';
 
+-- --------------------
+-- INDEXING in MySQL --
+-- --------------------
+
 
 
 
