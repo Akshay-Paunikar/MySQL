@@ -497,6 +497,16 @@ FROM emp_table;
 SELECT *, salary - (salary / 2) + bonus AS total_income
 FROM emp_table;
 
+/* BITWISE OPERATORS - AND OR */
+-- Female employees with more than 10 years of experience --
+SELECT * FROM emp_info
+WHERE gender = 'F'
+AND experience >= 10;
+
+-- employees with role as manager with 10 years experience --
+SELECT * FROM emp_info
+WHERE role like '%manager%'
+OR experience >=10;
 
 
 
