@@ -508,5 +508,48 @@ SELECT * FROM emp_info
 WHERE role like '%manager%'
 OR experience >=10;
 
+/* COMPARISON OPERATORS */
+/*
+= ==> Equal to
+> ==> Greater than
+< ==> Less than
+>= ==> Greater than or equal to
+<= ==> Less than or equal to
+<> ==> Not equal to
+*/
+
+-- Salary more than 25000 --
+SELECT * FROM emp_table
+WHERE salary > 25000;
+
+SELECT * FROM emp_table
+WHERE salary < 25000;
+
+SELECT * FROM emp_table
+WHERE salary >= 25000;
+
+SELECT * FROM emp_table
+WHERE bonus <= 1500;
+
+SELECT * FROM emp_info
+WHERE dept = 'HEALTHCARE';
+
+SELECT * FROM emp_info
+WHERE dept <> 'ALL';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
