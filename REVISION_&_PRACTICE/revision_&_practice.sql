@@ -738,10 +738,23 @@ VALUES
 (2, 'George', 35),
 (1, 'Lily', 28);
 
+/* CHECK CONSTRAINT */
+/* Check constraint can be used to verify the value being entered into a record. */
+CREATE TABLE users(
+id INTEGER PRIMARY KEY,
+name VARCHAR(100) NOT NULL,
+age INTEGER NOT NULL,
+CHECK (age >= 18)
+) ENGINE = InnoDB;
+SELECT * FROM revision_practice.users;
+DESCRIBE revision_practice.users;
+INSERT INTO users (id, name, age)
+VALUES
+(1, 'Mark Jenson', 22);
 
-
-
-
+INSERT INTO users (id, name, age)
+VALUES
+(2, 'Julia Cliff', 17);
 
 
 
