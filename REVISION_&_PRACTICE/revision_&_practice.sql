@@ -674,10 +674,48 @@ INSERT INTO revision_practice.product_details(prod_id, order_date)
 VALUES
 (001, "2024-06-25");
 
+/* FOREIGN KEY */
+/* Foreign key constraint is used to connect two tables. It corresponds to the primary key of a different table. */
+/* 
+You are the sales manager of a store. You have data of your customers and their orders in two different tables. 
+You must ensure that the customer data added to the table on orders is not different from the original data.
+Use a foreign key to specify the column that must contain only the data present in the primary table.
+*/
+CREATE TABLE customer_data(
+cust_id INTEGER PRIMARY KEY,
+first_name VARCHAR(100) NOT NULL,
+last_name VARCHAR(100) NOT NULL,
+age INTEGER NOT NULL
+) ENGINE = InnoDB;
+SELECT * FROM revision_practice.customer_data;
+DESCRIBE revision_practice.customer_data;
 
+CREATE TABLE orders_data(
+order_id INTEGER PRIMARY KEY,
+order_num INTEGER NOT NULL,
+cust_id INTEGER,
+FOREIGN KEY (cust_id) REFERENCES revision_practice.customer_data(cust_id)
+);
+SELECT * FROM revision_practice.orders_data;
+DESCRIBE revision_practice.orders_data;
 
+INSERT INTO customer_data (cust_id, first_name, last_name, age)
+VALUES
+(1,'Mark', 'Bouncer',23),
+(2,'Max','Hussey',34),
+(3,'Harry','James',44);
 
+INSERT INTO orders_data (order_id, order_num, cust_id)
+VALUES
+(1,7765,3),
+(2,7734,3),
+(3,7789,2);
 
+INSERT INTO orders_data (order_id, order_num, cust_id)
+VALUES
+(4,7765,4),
+(5,7734,5),
+(6,7789,6);
 
 
 
