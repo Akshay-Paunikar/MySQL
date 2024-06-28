@@ -642,8 +642,15 @@ There are 2 types of constraints in MySQL:
 	- Column Level restriction
     - Table Level restriction
 */
-
-
+/* NOT NULL CONSTRAINT */
+/* NOT NULL constraint prevents the column from having NULL or empty values */
+CREATE TABLE constraint1(
+id INTEGER,
+first_name VARCHAR(100) NOT NULL,
+last_name VARCHAR(100) NOT NULL,
+city VARCHAR(50)) ENGINE = InnoDB;
+SELECT * FROM constraint1;
+DESCRIBE constraint1;
 
 
 
