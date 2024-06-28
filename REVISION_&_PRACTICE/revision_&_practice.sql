@@ -652,6 +652,29 @@ city VARCHAR(50)) ENGINE = InnoDB;
 SELECT * FROM constraint1;
 DESCRIBE constraint1;
 
+/* PRIMARY CONSTRAINT */
+/*
+Primary constraint provides a distinct identity to each record in a table. 
+A table can only have one primary key.
+*/
+CREATE TABLE constraint2(
+id INTEGER PRIMARY KEY,
+name VARCHAR(100) NOT NULL,
+age INTEGER NOT NULL) ENGINE = InnoDB;
+SELECT * FROM revision_practice.constraint2;
+DESCRIBE revision_practice.constraint2;
+
+CREATE TABLE product_details(
+prod_id INTEGER PRIMARY KEY,
+prod_name VARCHAR(100) NOT NULL,
+order_date DATE) ENGINE = InnoDB;
+SELECT * FROM revision_practice.product_details;
+DESCRIBE revision_practice.product_details;
+INSERT INTO revision_practice.product_details(prod_id, order_date)
+VALUES
+(001, "2024-06-25");
+
+
 
 
 
