@@ -633,6 +633,17 @@ DROP INDEX id_idx ON revision_practice.hr_data;
  - OFFSET
 */
 
+-- --------------------
+-- MySQL CONSTRAINTS --
+-- --------------------
+/*
+Constraint is a condition that specifies the type of data that can be entered into a table
+There are 2 types of constraints in MySQL:
+	- Column Level restriction
+    - Table Level restriction
+*/
+
+
 
 
 
