@@ -717,6 +717,32 @@ VALUES
 (5,7734,5),
 (6,7789,6);
 
+/* UNIQUE CONSTRAINT */
+/* Unique constraint ensures that there are no entries with the same value in a column. */
+CREATE TABLE constraint3(
+id INTEGER NOT NULL,
+name VARCHAR(100),
+age INTEGER,
+UNIQUE(id)
+) ENGINE = InnoDB;
+SELECT * FROM revision_practice.constraint3;
+DESCRIBE revision_practice.constraint3;
+
+INSERT INTO constraint3 (ID, Name, Age) 
+VALUES 
+(1, 'George', 35),
+(2, 'Lily', 28);
+
+INSERT INTO constraint3 (ID, Name, Age) 
+VALUES 
+(2, 'George', 35),
+(1, 'Lily', 28);
+
+
+
+
+
+
 
 
 
