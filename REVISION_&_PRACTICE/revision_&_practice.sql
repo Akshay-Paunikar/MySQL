@@ -862,6 +862,23 @@ FROM ecommerce_management.customer;
 -- TRIM --
 SELECT TRIM(' JESSICA ');
 
+/* NUMERIC FUNCTIONS */
+
+-- ABS --
+SELECT ABS(-121.23);
+
+-- CEIL --
+SELECT CEIL(121.34);
+
+-- FLOOR --
+SELECT FLOOR(121.34);
+
+-- TRUNCATE --
+SELECT TRUNCATE(1345.32,1);
+
+-- MOD --
+SELECT MOD(8,3);
+
 
 
 
