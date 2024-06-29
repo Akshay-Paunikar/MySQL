@@ -825,6 +825,37 @@ FROM ecommerce_management.product;
 SELECT MAX(cost) AS max_cost
 FROM ecommerce_management.product;
 
+/* SCALAR FUNCTIONS */
+
+-- ROUND --
+SELECT ROUND(2.372891,3);
+
+-- LENGTH --
+SELECT length(phone_number) AS Length_phone_number 
+FROM ecommerce_management.customer;
+
+-- FORMAT --
+SELECT FORMAT(121.234,2);
+
+-- MID --
+SELECT MID(product_id,1,4) AS new_product_id, COUNT(quantity)
+FROM ecommerce_management.product
+GROUP BY new_product_id;
+
+-- NOW --
+SELECT NOW();
+
+-- UPPERCASE --
+SELECT UCASE(name) FROM 
+ecommerce_management.customer;
+
+-- LOWERCASE --
+SELECT LCASE(address) FROM 
+ecommerce_management.customer;
+
+
+
+
 
 
 
