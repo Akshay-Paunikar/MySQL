@@ -853,6 +853,15 @@ ecommerce_management.customer;
 SELECT LCASE(address) FROM 
 ecommerce_management.customer;
 
+/* STRING FUNCTIONS */
+
+-- CONCAT --
+SELECT CONCAT(address,' ', 'zipcode', '-', pincode) AS address
+FROM ecommerce_management.customer;
+
+-- TRIM --
+SELECT TRIM(' JESSICA ');
+
 
 
 
