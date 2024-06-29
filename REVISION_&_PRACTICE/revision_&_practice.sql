@@ -786,8 +786,11 @@ SELECT p_size, SUM(quantity) AS total
 FROM ecommerce_management.product
 GROUP BY p_size;
 
-
-
+/* AVERAGE FUNCTION */
+/* Average function returns the average value of a particular column. */
+SELECT AVG(quantity) AS avg_purchase_quantity
+FROM ecommerce_management.product
+WHERE gender = 'Male';
 
 
 
