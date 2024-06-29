@@ -770,5 +770,36 @@ SQL functions are short programs with one or more input parameters but just one 
  Are complicated mathematical logic that can be broken down into simpler functions.
 */
 USE ecommerce_management;
+/* AGGREGATE FUNCTIONS */
+/*
+The aggregate functions allow performing the calculation on a set of values to return a single scalar value.
+*/
+/* COUNT FUNCTION */
+/* Count function returns the total number of rows in a specified column or a table. */
+SELECT COUNT(product_id)
+FROM ecommerce_management.product
+WHERE cost > 400;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
