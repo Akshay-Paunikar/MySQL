@@ -811,8 +811,19 @@ SELECT * FROM ecommerce_management.product
 ORDER BY cost DESC
 LIMIT 1;
 
+/* MIN FUNCTION */
+SELECT MIN(commission) AS min_commission
+FROM ecommerce_management.product;
 
+SELECT MIN(cost) AS min_cost
+FROM ecommerce_management.product;
 
+/* MAX FUNCTION */
+SELECT MAX(commission) AS max_commission
+FROM ecommerce_management.product;
+
+SELECT MAX(cost) AS max_cost
+FROM ecommerce_management.product;
 
 
 
