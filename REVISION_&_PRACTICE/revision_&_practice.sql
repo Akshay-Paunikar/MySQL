@@ -780,7 +780,11 @@ SELECT COUNT(product_id)
 FROM ecommerce_management.product
 WHERE cost > 400;
 
-
+/* SUM FUNCTON */
+/* Sum function returns the sum of values from a particular column. */
+SELECT p_size, SUM(quantity) AS total
+FROM ecommerce_management.product
+GROUP BY p_size;
 
 
 
