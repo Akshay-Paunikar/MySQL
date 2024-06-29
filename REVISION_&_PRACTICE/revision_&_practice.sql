@@ -769,6 +769,6 @@ SQL functions are short programs with one or more input parameters but just one 
  Are compiled and cached
  Are complicated mathematical logic that can be broken down into simpler functions.
 */
-
+USE ecommerce_management;
 
 
