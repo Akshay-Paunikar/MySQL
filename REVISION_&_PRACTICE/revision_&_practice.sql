@@ -756,6 +756,19 @@ INSERT INTO users (id, name, age)
 VALUES
 (2, 'Julia Cliff', 17);
 
+-- -------------------
+-- FUNCTIONS IN SQL --
+-- -------------------
+/*
+SQL functions are basic subprograms used extensively to handle or manipulate data.
+SQL functions enhance database speed and performance.
+SQL functions are short programs with one or more input parameters but just one output value.
+
+ - Advantages of SQL Functions
+ Boost the database's efficiency and productivity
+ Are compiled and cached
+ Are complicated mathematical logic that can be broken down into simpler functions.
+*/
 
 
 
