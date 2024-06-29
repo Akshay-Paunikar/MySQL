@@ -770,6 +770,12 @@ SQL functions are short programs with one or more input parameters but just one 
  Are complicated mathematical logic that can be broken down into simpler functions.
 */
 USE ecommerce_management;
+SELECT * FROM ecommerce_management.product;
+
+UPDATE ecommerce_management.product
+SET p_size = 'Small'
+WHERE p_size = 'Samll';
+
 /* AGGREGATE FUNCTIONS */
 /*
 The aggregate functions allow performing the calculation on a set of values to return a single scalar value.
@@ -792,7 +798,18 @@ SELECT AVG(quantity) AS avg_purchase_quantity
 FROM ecommerce_management.product
 WHERE gender = 'Male';
 
+SELECT p_size, AVG(cost) AS avg_cost
+FROM ecommerce_management.product
+GROUP BY p_size;
 
+/* LIMIT FUNCTION */
+SELECT * FROM ecommerce_management.product
+ORDER BY cost ASC
+LIMIT 1;
+
+SELECT * FROM ecommerce_management.product
+ORDER BY cost DESC
+LIMIT 1;
 
 
 
