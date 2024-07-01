@@ -895,6 +895,18 @@ SELECT EXTRACT(DAY FROM '2024-06-25 01:02:03');
 SELECT DATE_FORMAT('2007-10-04 22:23:00', '%H:%i:%s');
 SELECT DATE_FORMAT('2007-10-04 22:23:00', '%M %D %Y');
 
+/* Handling Duplicate Records */
+/* The duplicate records can be handled in two ways: 
+ - Using DISTINCT and COUNT keywords to fetch the number of unique records
+ - Using COUNT and GROUPBY keywords to eliminate duplicate records
+*/
+SELECT COUNT(DISTINCT(address)) AS unique_address
+FROM ecommerce_management.customer;
+
+SELECT ANY_VALUE(address), pincode, COUNT(*) AS num_records
+FROM ecommerce_management.customer
+GROUP BY pincode
+HAVING num_records = 1;
 
 
 
