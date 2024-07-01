@@ -1,3 +1,6 @@
+SELECT VERSION();
+SELECT SESSION_USER();
+
 -- ------------------------
 -- DATABASE MANIPULATION --
 -- ------------------------ 
@@ -908,27 +911,19 @@ FROM ecommerce_management.customer
 GROUP BY pincode
 HAVING num_records = 1;
 
+/* Miscellaneous Functions */
 
+-- CONVERT --
+SELECT CONVERT('11:52:35',TIME);
 
+-- IF --
+SELECT IF(200<100,'YES','NO');
 
+-- ISNULL --
+SELECT ISNULL('1213');
 
+-- IFNULL --
+SELECT IFNULL('121','Happy life');
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+-- COALESCE --
+SELECT COALESCE(NULL,'121','AAA',NULL);
