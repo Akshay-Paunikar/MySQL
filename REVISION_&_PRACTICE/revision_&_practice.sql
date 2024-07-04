@@ -979,6 +979,35 @@ VALUES
 
 SELECT * FROM proj_db.emp_records;
 
+CREATE TABLE IF NOT EXISTS proj_records(
+proj_id VARCHAR(4) NOT NULL PRIMARY KEY,
+proj_name VARCHAR(200) NOT NULL,
+domain VARCHAR(100) NOT NULL,
+start_date DATE NOT NULL,
+closure_date DATE NOT NULL,
+dev_qtr VARCHAR(2) NOT NULL,
+status VARCHAR(7),
+CONSTRAINT projid_check CHECK (SUBSTR(PROJ_ID,1,1) = 'P'),
+CONSTRAINT check_start_date CHECK (START_DATE >= '2021-04-01'),
+CONSTRAINT check_closure_date CHECK (CLOSURE_DATE <= '2022-03-30'),
+CONSTRAINT chk_qtr CHECK (DEV_QTR IN ('Q1', 'Q2', 'Q3', 'Q4')),
+CONSTRAINT chk_status CHECK (STATUS IN ('YTS', 'WIP', 'DONE', 'DELAYED'))
+) ENGINE = InnoDB;
+
+SELECT * FROM proj_db.proj_records;
+DESCRIBE proj_db.proj_records;
+
+INSERT INTO proj_db.proj_records (proj_id, proj_name, domain, start_date, closure_date, dev_qtr, status)
+VALUES
+('P103', 'Drug Discovery', 'HEALTHCARE', '2021-04-06', '2021-06-20', 'Q1', 'DONE'),
+('P105', 'Fraud Detection', 'FINANCE', '2021-04-11', '2021-06-25', 'Q1', 'DONE'),
+('P208', 'Algorithmic Trading', 'FINANCE', '2022-01-16', '2022-03-27', 'Q4', 'YTS'),
+('P109', 'Market Basket Analysis', 'RETAIL', '2021-04-12', '2021-06-30', 'Q1', 'DELAYED'),
+('P204', 'Supply Chain Management', 'AUTOMOTIVE', '2021-07-15', '2021-09-28', 'Q2', 'WIP'),
+('P406', 'Customer Sentiment Analysis', 'RETAIL', '2021-07-09', '2021-09-24', 'Q2', 'WIP'),
+('P302', 'Early Detection of Lung Cancer', 'HEALTHCARE', '2021-10-08', '2021-12-18', 'Q3', 'YTS'),
+('P201', 'Self Driving Cars', 'AUTOMOTIVE', '2022-01-12', '2022-03-30', 'Q4', 'YTS');
+
 
 
 
