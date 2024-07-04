@@ -935,7 +935,49 @@ CREATE DATABASE IF NOT EXISTS proj_db;
 USE proj_db;
 SET default_storage_engine = InnoDB;
 
+CREATE TABLE IF NOT EXISTS emp_records(
+emp_id  VARCHAR(4) NOT NULL PRIMARY KEY, 
+first_name VARCHAR(100) NOT NULL, 
+last_name VARCHAR(100) NOT NULL, 
+gender VARCHAR(1) NOT NULL, 
+role VARCHAR(100) NOT NULL, 
+department VARCHAR(50) NOT NULL, 
+experience INTEGER NOT NULL CHECK (experience >= 0), 
+country VARCHAR(50) NOT NULL, 
+continent VARCHAR(50) NOT NULL, 
+salary INTEGER NOT NULL, 
+rating INTEGER NOT NULL,
+manager_id VARCHAR(4),
+CONSTRAINT empid_check CHECK (SUBSTR(emp_id,1,1) = 'E'),
+CONSTRAINT gender_check CHECK(GENDER in ('M', 'F', 'O'))
+) ENGINE = InnoDB;
 
+SELECT * FROM proj_db.emp_records;
+DESCRIBE proj_db.emp_records;
+
+INSERT INTO proj_db.emp_records(emp_id, first_name, last_name, gender, role, department, experience, country, continent, salary, rating, manager_id)
+VALUES
+('E260', 'Roy', 'Collins', 'M', 'SENIOR DATA SCIENTIST', 'RETAIL', 7, 'INDIA', 'ASIA', 7000, 3, 'E583'),
+('E245', 'Nian', 'Zhen', 'M', 'SENIOR DATA SCIENTIST', 'RETAIL', 6, 'CHINA', 'ASIA', 6500, 2, 'E583'),
+('E620', 'Katrina', 'Allen', 'F', 'JUNIOR DATA SCIENTIST', 'RETAIL', 2, 'INDIA', 'ASIA', 3000, 1, 'E612'),
+('E640', 'Jenifer', 'Jhones', 'F', 'JUNIOR DATA SCIENTIST', 'RETAIL', 1, 'COLOMBIA', 'SOUTH AMERICA', 2800, 4, 'E612'),
+('E403', 'Steve', 'Hoffman', 'M', 'ASSOCIATE DATA SCIENTIST', 'FINANCE', 4, 'USA', 'NORTH AMERICA', 5000, 3, 'E103'),
+('E204', 'Karene', 'Nowak', 'F', 'SENIOR DATA SCIENTIST', 'AUTOMOTIVE', 8, 'GERMANY', 'EUROPE', 7500, 5, 'E428'),
+('E057', 'Dorothy', 'Wilson', 'F', 'SENIOR DATA SCIENTIST', 'HEALTHCARE', 9, 'USA', 'NORTH AMERICA', 7700, 1, 'E083'),
+('E010', 'William', 'Butler', 'M', 'LEAD DATA SCIENTIST', 'AUTOMOTIVE', 12, 'FRANCE', 'EUROPE', 9000, 2, 'E428'),
+('E478', 'David', 'Smith', 'M', 'ASSOCIATE DATA SCIENTIST', 'RETAIL', 3, 'COLOMBIA', 'SOUTH AMERICA', 4000, 4, 'E583'),
+('E005', 'Eric', 'Hoffman', 'M', 'LEAD DATA SCIENTIST', 'FINANCE', 11, 'USA', 'NORTH AMERICA', 8500, 3, 'E103'),
+('E052', 'Dianna', 'Wilson', 'F', 'SENIOR DATA SCIENTIST', 'HEALTHCARE', 6, 'CANADA', 'NORTH AMERICA', 5500, 5, 'E083'),
+('E505', 'Chad', 'Wilson', 'M', 'ASSOCIATE DATA SCIENTIST', 'HEALTHCARE', 5, 'CANADA', 'NORTH AMERICA', 5000, 2, 'E083'),
+('E532', 'Claire', 'Brennan', 'F', 'ASSOCIATE DATA SCIENTIST', 'AUTOMOTIVE', 3, 'GERMANY', 'EUROPE', 4300, 1, 'E428'),
+('E083', 'Patrick', 'Voltz', 'M', 'MANAGER', 'HEALTHCARE', 15, 'USA', 'NORTH AMERICA', 9500, 5, 'E001'),
+('E583', 'Janet', 'Hale', 'F', 'MANAGER', 'RETAIL', 14, 'COLOMBIA', 'SOUTH AMERICA', 10000, 2, 'E001'),
+('E103', 'Emily', 'Grove', 'F', 'MANAGER', 'FINANCE', 14, 'CANADA', 'NORTH AMERICA', 10500, 4, 'E001'),
+('E612', 'Tracy', 'Norris', 'F', 'MANAGER', 'RETAIL', 13, 'INDIA', 'ASIA', 8500, 4, 'E001'),
+('E428', 'Pete', 'Allen', 'M', 'MANAGER', 'AUTOMOTIVE', 14, 'GERMANY', 'EUROPE', 11000, 4, 'E001'),
+('E001', 'Arthur', 'Black', 'M', 'PRESIDENT', 'ALL', 20, 'USA', 'NORTH AMERICA', 16500, 5, 'E001');
+
+SELECT * FROM proj_db.emp_records;
 
 
 
