@@ -1043,7 +1043,24 @@ VALUES
 ('E428', 'E001', 'P105'),
 ('E001', 'E001', 'P208');
 
+-- Alias in SQL --
+/*
+An alias is a temporary name assigned to a table, column, or expression for the purpose of an SQL query, and it exists only for the duration of the query.
+The AS keyword is used to make an alias.
+If an alias contains space, it must be enclosed in quotation marks.
+Aliases are typically used to make column names easier to comprehend.
 
+Types of Alias:
+Column alias: A column alias is a temporary name assigned to a column having a long or descriptive technical name in order to simplify the query output.
+Note: A column alias cannot be used in the WHERE clause because the WHERE clause is evaluated before the values of columns specified in the SELECT 
+statement during query execution in MySQL
 
+Table alias: A table alias is a temporary name assigned to a table that has a descriptive technical name to simplify the query output.
+Table aliases are preferred when there are multiple tables involved in an SQL query. It helps in collecting data and connecting the tables via field relations.
+*/
+
+SELECT CONCAT_WS(', ', last_name, first_name) 
+AS full_name
+FROM proj_db.emp_records;
 
 
