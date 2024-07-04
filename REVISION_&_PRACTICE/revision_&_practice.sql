@@ -1063,4 +1063,8 @@ SELECT CONCAT_WS(', ', last_name, first_name)
 AS full_name
 FROM proj_db.emp_records;
 
+SELECT e.first_name, e.last_name
+FROM proj_db.emp_records AS e
+WHERE e.department = 'HEALTHCARE';
+
 
