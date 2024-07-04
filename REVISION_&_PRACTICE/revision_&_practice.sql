@@ -927,3 +927,19 @@ SELECT IFNULL('121','Happy life');
 
 -- COALESCE --
 SELECT COALESCE(NULL,'121','AAA',NULL);
+
+-- ------------------------------------------------
+-- Subqueries, Operators, and Derived Tables in SQL
+-- ------------------------------------------------
+CREATE DATABASE IF NOT EXISTS proj_db;
+USE proj_db;
+SET default_storage_engine = InnoDB;
+
+
+
+
+
+
+
+
+
