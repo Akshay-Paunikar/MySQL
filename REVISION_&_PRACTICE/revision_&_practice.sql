@@ -949,7 +949,7 @@ salary INTEGER NOT NULL,
 rating INTEGER NOT NULL,
 manager_id VARCHAR(4),
 CONSTRAINT empid_check CHECK (SUBSTR(emp_id,1,1) = 'E'),
-CONSTRAINT gender_check CHECK(GENDER in ('M', 'F', 'O'))
+CONSTRAINT gender_check CHECK(gender in ('M', 'F', 'O'))
 ) ENGINE = InnoDB;
 
 SELECT * FROM proj_db.emp_records;
@@ -987,11 +987,11 @@ start_date DATE NOT NULL,
 closure_date DATE NOT NULL,
 dev_qtr VARCHAR(2) NOT NULL,
 status VARCHAR(7),
-CONSTRAINT projid_check CHECK (SUBSTR(PROJ_ID,1,1) = 'P'),
-CONSTRAINT check_start_date CHECK (START_DATE >= '2021-04-01'),
-CONSTRAINT check_closure_date CHECK (CLOSURE_DATE <= '2022-03-30'),
-CONSTRAINT chk_qtr CHECK (DEV_QTR IN ('Q1', 'Q2', 'Q3', 'Q4')),
-CONSTRAINT chk_status CHECK (STATUS IN ('YTS', 'WIP', 'DONE', 'DELAYED'))
+CONSTRAINT projid_check CHECK (SUBSTR(proj_id,1,1) = 'P'),
+CONSTRAINT check_start_date CHECK (start_date >= '2021-04-01'),
+CONSTRAINT check_closure_date CHECK (closure_date <= '2022-03-30'),
+CONSTRAINT chk_qtr CHECK (dev_qtr IN ('Q1', 'Q2', 'Q3', 'Q4')),
+CONSTRAINT chk_status CHECK (status IN ('YTS', 'WIP', 'DONE', 'DELAYED'))
 ) ENGINE = InnoDB;
 
 SELECT * FROM proj_db.proj_records;
@@ -1008,7 +1008,40 @@ VALUES
 ('P302', 'Early Detection of Lung Cancer', 'HEALTHCARE', '2021-10-08', '2021-12-18', 'Q3', 'YTS'),
 ('P201', 'Self Driving Cars', 'AUTOMOTIVE', '2022-01-12', '2022-03-30', 'Q4', 'YTS');
 
+CREATE TABLE IF NOT EXISTS proj_assign(
+emp_id VARCHAR(4) NOT NULL,
+manager_id VARCHAR(4) NOT NULL,
+proj_id VARCHAR(4) NOT NULL,
+CONSTRAINT empid_check_2 CHECK (SUBSTR(emp_id,1,1) = 'E'),
+CONSTRAINT projid_check_2 CHECK (SUBSTR(proj_id,1,1) = 'P'),
+FOREIGN KEY(emp_id) REFERENCES proj_db.emp_records(emp_id),
+FOREIGN KEY(proj_id) REFERENCES proj_db.proj_records(proj_id)
+) ENGINE = InnoDB;
 
+SELECT * FROM proj_db.proj_assign;
+DESCRIBE proj_db.proj_assign;
+
+INSERT INTO proj_db.proj_assign (emp_id, manager_id, proj_id)
+VALUES
+('E260', 'E583', 'P103'),
+('E245', 'E583', 'P105'),
+('E620', 'E612', 'P208'),
+('E640', 'E612', 'P109'),
+('E403', 'E103', 'P204'),
+('E204', 'E428', 'P406'),
+('E057', 'E083', 'P302'),
+('E010', 'E428', 'P201'),
+('E478', 'E583', 'P103'),
+('E005', 'E103', 'P105'),
+('E052', 'E083', 'P208'),
+('E505', 'E083', 'P109'),
+('E532', 'E428', 'P204'),
+('E083', 'E001', 'P406'),
+('E583', 'E001', 'P302'),
+('E103', 'E001', 'P201'),
+('E612', 'E001', 'P103'),
+('E428', 'E001', 'P105'),
+('E001', 'E001', 'P208');
 
 
 
