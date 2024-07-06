@@ -1130,9 +1130,31 @@ WHERE pr.status IN ("DONE", "WIP")
 GROUP BY pr.proj_name
 ORDER BY pr.proj_id;
 
+-- RIGHT JOIN --
+/*
+The RIGHT JOIN is just the opposite of the LEFT JOIN and requires a join predicate to join two tables.
+The RIGHT JOIN keyword returns all records from the right table (table 1), and the matching 
+records from the left table (table 2). The result is 0 records from the left side if there is no match.
+The RIGHT JOIN also supports the USING clause.
+*/
+-- Problem: Your manager wants the details of each employee along with the number of projects assigned to them. --
+SELECT er.emp_id, er.first_name, er.last_name, er.gender, er.role, er.department, er.manager_id,
+COUNT(DISTINCT pa.proj_id) AS proj_count
+FROM proj_db.proj_assign AS pa
+RIGHT JOIN proj_db.emp_records AS er
+ON pa.emp_id = er.emp_id
+WHERE er.role NOT IN ("MANAGER", "PRESIDENT", "CEO")
+GROUP BY er.emp_id
+ORDER BY er.manager_id;
 
-
-
+SELECT er.emp_id, er.first_name, er.last_name, er.gender, er.role, er.department, er.manager_id,
+COUNT(DISTINCT pa.proj_id) AS proj_count
+FROM proj_db.proj_assign AS pa
+RIGHT JOIN proj_db.emp_records AS er
+USING (emp_id)
+WHERE er.role NOT IN ("MANAGER", "PRESIDENT", "CEO")
+GROUP BY er.emp_id
+ORDER BY er.manager_id;
 
 
 
