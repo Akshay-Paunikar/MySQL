@@ -1067,4 +1067,59 @@ SELECT e.first_name, e.last_name
 FROM proj_db.emp_records AS e
 WHERE e.department = 'HEALTHCARE';
 
+-- ---------------------
+-- Introduction to Joins
+-- ---------------------
+/*
+Joins in MySQL:
+A JOIN is a method of linking data between one (self-join) or more tables based on a related column between them.
+Joins are frequently used in SELECT, UPDATE, and DELETE statements. It is also used in subqueries to join multiple tables.
+
+Types of Joins:
+INNER JOIN
+LEFT (OUTER) JOIN
+RIGHT (OUTER) JOIN
+CROSS JOIN
+*/
+
+-- INNER JOIN --
+/*
+The INNER JOIN clause joins two tables based on a condition which is known as a join predicate.
+It returns only the matching rows from both tables.
+The column names are enclosed in the USING clause if the JOIN condition utilizes the equal operator (=) and the column names in both 
+tables, used for matching, are the same.
+*/
+-- Problem: Your manager expects you to identify employees assigned to projects.--
+SELECT er.emp_id, er.first_name, er.last_name, er.department, er.manager_id
+FROM proj_db.emp_records AS er
+INNER JOIN proj_db.proj_assign AS pa
+ON er.emp_id = pa.emp_id
+WHERE er.role NOT IN ("MANAGER", "PRESIDENT", "CEO")
+ORDER BY er.manager_id;
+
+SELECT er.emp_id, er.first_name, er.last_name, er.department, er.manager_id
+FROM proj_db.emp_records AS er
+INNER JOIN proj_db.proj_assign AS pa
+USING (emp_id)
+WHERE er.role NOT IN ("MANAGER", "PRESIDENT", "CEO")
+ORDER BY er.manager_id;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
