@@ -1104,8 +1104,31 @@ USING (emp_id)
 WHERE er.role NOT IN ("MANAGER", "PRESIDENT", "CEO")
 ORDER BY er.manager_id;
 
+-- LEFT JOIN --
+/*
+Similar to INNER JOIN clause, the LEFT JOIN clause also requires a join predicate to join two tables.
+The LEFT JOIN keyword returns all records from the left table (table1), and the matching records 
+from the right table (table 2). If there is no match on the right side, the outcome is 0 records.
+The LEFT JOIN also supports the USING clause.
+*/
+-- Problem: Your manager wants the details of the ongoing projects along with the number of employees working on them. --
+SELECT pr.proj_id, pr.proj_name, pr.domain, COUNT(DISTINCT pa.emp_id) AS emp_count, pr.dev_qtr, pr.status
+FROM proj_db.proj_records AS pr
+LEFT JOIN proj_db.proj_assign AS pa
+ON pr.proj_id = pa.proj_id
+WHERE pr.status IN ("DONE", "WIP")
+GROUP BY pr.proj_name
+ORDER BY pr.proj_id;
 
+SET sql_mode=(SELECT REPLACE(@@sql_mode, 'ONLY_FULL_GROUP_BY', ''));
 
+SELECT pr.proj_id, pr.proj_name, pr.domain, COUNT(DISTINCT pa.emp_id) AS emp_count, pr.dev_qtr, pr.status
+FROM proj_db.proj_records AS pr
+LEFT JOIN proj_db.proj_assign AS pa
+USING (proj_id)
+WHERE pr.status IN ("DONE", "WIP")
+GROUP BY pr.proj_name
+ORDER BY pr.proj_id;
 
 
 
