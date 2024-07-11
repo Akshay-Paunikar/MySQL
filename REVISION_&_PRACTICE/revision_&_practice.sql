@@ -1173,6 +1173,44 @@ WHERE
 	er.role NOT IN ("MANAGER", "PRESIDENT", "CEO")
 ORDER BY
 	er.first_name;
+    
+-- SELF JOIN --
+/*
+The SELF JOIN clause joins a table to itself using the INNER JOIN or LEFT JOIN.
+The SELF JOIN is often used to query hierarchical data or to compare rows within the same table.
+To perform a SELF JOIN, table aliases must be used to avoid repeating the same table name in a single query.
+MySQL throws an error if a table is referenced twice or more in a query without utilizing table aliases.
+*/
+-- Problem: identify the number of employees reporting to each manager including the President and the CEO. --
+SELECT
+	a.emp_id, a.first_name, a.last_name, a.role, a.experience, a.department, COUNT(b.emp_id) AS emp_count
+FROM
+	proj_db.emp_records AS a
+INNER JOIN
+	proj_db.emp_records AS b
+	ON a.emp_id = b.emp_id
+    AND b.emp_id != b.manager_id
+WHERE 
+	a.role IN ("MANAGER", "PRESIDENT", "CEO")
+GROUP BY
+	a.emp_id
+ORDER BY
+	a.emp_id;
+    
+SELECT
+	a.emp_id, a.first_name, a.last_name, a.role, a.experience, a.department, COUNT(b.emp_id) AS emp_count
+FROM
+	proj_db.emp_records AS a
+LEFT JOIN
+	proj_db.emp_records AS b
+	ON a.emp_id = b.emp_id
+    AND b.emp_id != b.manager_id
+WHERE 
+	a.role IN ("MANAGER", "PRESIDENT", "CEO")
+GROUP BY
+	a.emp_id
+ORDER BY
+	a.emp_id;
 
 
 
