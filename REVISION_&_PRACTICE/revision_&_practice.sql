@@ -1156,6 +1156,23 @@ WHERE er.role NOT IN ("MANAGER", "PRESIDENT", "CEO")
 GROUP BY er.emp_id
 ORDER BY er.manager_id;
 
+-- CROSS JOIN --
+/*
+Unlike the INNER JOIN, LEFT JOIN, and RIGHT JOIN clauses, the CROSS JOIN clause lacks a join condition.
+The CROSS JOIN creates a Cartesian product of the rows in the joined tables.
+To create the result set, the CROSS JOIN combines every row from the left table with every row from the right table.
+*/
+-- Problem: Perform the cartesian product of the rows in both the employee and project records tables. --
+SELECT 
+	er.emp_id, er.first_name, er.last_name, er.department, er.manager_id, pa.proj_id
+FROM
+	proj_db.emp_records AS er
+CROSS JOIN
+	proj_db.proj_assign AS pa
+WHERE
+	er.role NOT IN ("MANAGER", "PRESIDENT", "CEO")
+ORDER BY
+	er.first_name;
 
 
 
