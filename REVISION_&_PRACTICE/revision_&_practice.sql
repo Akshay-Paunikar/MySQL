@@ -1212,6 +1212,59 @@ GROUP BY
 ORDER BY
 	a.emp_id;
 
+-- ----------------
+-- SET OPERATORS --
+-- ----------------
+/*
+Set operators combine the results of two component queries into a single result.
+Set operators are used to get meaningful results from data stored in the table under different special conditions.
+*/
+
+-- UNION OPERATOR --
+/*
+The UNION operator is used to combine two or more result sets from multiple SELECT statements into a single result set.
+By default, the UNION operator eliminates duplicate rows even if the DISTINCT operator is not explicitly provided.
+
+In all SELECT statements, the number of columns and their order must be the same.
+The data type of columns must be compatible or same.
+*/
+-- Problem: provide the full names and departments of the employees along with the name and domain of projects as name and department from 
+-- both the employee and project records tables.
+SELECT
+	er.emp_id, CONCAT(er.first_name, " ", er.last_name) AS full_name, er.department
+FROM
+	proj_db.emp_records AS er
+WHERE 
+	er.role IN ("MANAGER")
+UNION
+SELECT 
+	pr.proj_id, pr.proj_name, pr.domain
+FROM
+	proj_db.proj_records AS pr
+ORDER BY
+	department, emp_id;
+
+-- UNION ALL --
+/*
+The UNION operator can be substituted by the UNION ALL operator to maintain the duplicate rows in the result set.
+The UNION ALL operator performs the same functions as the UNION operator, but it is significantly faster since it does not have to deal with duplicate rows.
+*/
+SELECT
+	er.emp_id, CONCAT(er.first_name, " ", er.last_name) AS full_name, er.department
+FROM
+	proj_db.emp_records AS er
+WHERE 
+	er.role IN ("MANAGER")
+UNION ALL
+SELECT 
+	pr.proj_id, pr.proj_name, pr.domain
+FROM
+	proj_db.proj_records AS pr
+ORDER BY
+	department, emp_id;
+    
+
+
 
 
 
