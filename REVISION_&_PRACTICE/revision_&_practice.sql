@@ -1263,6 +1263,43 @@ FROM
 ORDER BY
 	department, emp_id;
     
+-- INTERSECT --
+/*
+The INTERSECT operator compares the result sets of two or more queries and returns only the distinct rows produced by both queries.
+Unlike the UNION operator, the INTERSECT operator returns the intersection between two circles.
+
+The INTERSECT operator is not supported by MySQL; however, it can be emulated.
+The INTERSECT operator in MySQL can be emulated in two ways:
+	1. Using DISTINCT and INNER JOIN clause
+	2. Using IN and Subquery
+*/
+-- list the employee IDs of all the managers who are involved with at least one project. --
+SELECT
+	DISTINCT er.emp_id
+FROM
+	proj_db.emp_records AS er
+INNER JOIN
+	proj_db.proj_assign AS pa
+USING(emp_id)
+WHERE
+	er.role IN ("MANAGER")
+ORDER BY
+	er.emp_id;
+    
+SELECT
+	DISTINCT er.emp_id
+FROM
+	proj_db.emp_records AS er
+WHERE
+	er.emp_id IN (
+    SELECT 
+		pa.emp_id
+    FROM
+		proj_db.proj_assign AS pa)
+	AND
+		er.role IN ("MANAGER")
+ORDER BY
+	er.emp_id;
 
 
 
