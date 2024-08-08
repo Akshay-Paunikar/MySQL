@@ -1300,9 +1300,46 @@ WHERE
 		er.role IN ("MANAGER")
 ORDER BY
 	er.emp_id;
+    
+-- MINUS OPERATOR --
+/* 
+The MINUS operator compares the results of two queries. It returns distinct rows from the result set of the first query that does not appear in the result set of the 
+second query.
+
+The MINUS operator is not supported by MySQL; however, it can be emulated using the JOIN clause.
+*/
+-- project IDs of the projects that are not yet assigned to any manager or employee. --
+SELECT
+	pr.proj_id
+FROM proj_db.proj_records AS pr
+LEFT JOIN
+	proj_db.proj_assign AS pa
+USING(proj_id)
+WHERE
+	pa.proj_id IS NULL;
+
+-- SUBQUERY in SQL --
+/*
+A subquery is a query nested within another query such as SELECT, INSERT, UPDATE, or DELETE.
+It is also called an Inner Query or Inner Select while the statement that contains the subquery is called an outer query or outer select.
+It can be used anywhere an expression is used and must be closed in parentheses.
+A subquery can also be nested within another subquery
+*/
+-- Subquery as Expressions --
+/* A subquery that returns a single value can be used as an expression. */
+-- Suppose you need to determine the count of managers and the total team strength excluding them in the retail domain in MySQL --
+SELECT
+	m.department, COUNT(DISTINCT m.emp_id) AS manager_count,
+		(SELECT COUNT(DISTINCT e.emp_id)
+		FROM proj_db.emp_records AS e
+		WHERE e.role NOT IN ("MANAGER", "PRESIDENT", "CEO")
+        AND e.department IN ("RETAIL")) AS team_strength
+FROM proj_db.emp_records AS m
+WHERE m.role IN ("MANAGER")
+AND m.department IN ("RETAIL");
 
 
-
+                
 
 
 
