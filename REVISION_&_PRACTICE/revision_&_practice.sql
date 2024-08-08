@@ -1410,6 +1410,16 @@ FROM
 	(SELECT emp_id, experience FROM proj_db.emp_records
 	GROUP BY experience ORDER BY experience) AS total_exp;
 
+-- Subquery With SELECT Statement --
+-- Suppose you need to determine all those projects that are assigned to at least one of the employees in MySQL --
+SELECT
+	proj_id, proj_name, domain, status
+FROM
+	proj_db.proj_records
+WHERE
+	proj_id IN (
+		SELECT DISTINCT proj_id FROM proj_db.proj_assign)
+ORDER BY proj_id, domain;
 
 
 
