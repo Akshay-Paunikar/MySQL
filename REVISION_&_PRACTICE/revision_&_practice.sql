@@ -1402,9 +1402,15 @@ WHERE
 		SELECT proj_id FROM proj_db.proj_assign)
 	ORDER BY proj_id;
 
-    
+-- Subquery in the FROM Clause --
+-- Suppose you need to determine the maximum, minimum, and average employee experience in the organization in MySQL. --
+SELECT
+	MAX(experience) AS max_exp, MIN(experience) AS min_exp, FLOOR(AVG(experience)) AS avg_exp
+FROM 
+	(SELECT emp_id, experience FROM proj_db.emp_records
+	GROUP BY experience ORDER BY experience) AS total_exp;
 
-                
+
 
 
 
