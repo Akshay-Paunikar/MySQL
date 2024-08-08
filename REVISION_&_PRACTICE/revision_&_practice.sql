@@ -1371,7 +1371,17 @@ WHERE
 		(SELECT DISTINCT pa.emp_id FROM proj_db.proj_assign AS pa)
 AND
 	er.role IN ("MANAGER");
-    
+
+-- Subquery With ANY Operator --
+-- Suppose you need to determine any five employees with more than or equal to the average experience of all employees in the organization in MySQL. --
+SELECT
+	er.emp_id, CONCAT(er.first_name, ' ', er.last_name) AS full_name, er.role, er.department, er.experience
+FROM 
+	proj_db.emp_records AS er
+WHERE
+	er.experience >= ANY (SELECT AVG(experience) FROM proj_db.emp_records)
+LIMIT 5;
+
 
 
     
