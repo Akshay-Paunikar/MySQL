@@ -1338,6 +1338,19 @@ FROM proj_db.emp_records AS m
 WHERE m.role IN ("MANAGER")
 AND m.department IN ("RETAIL");
 
+-- Subquery with WHERE Clause --
+-- Suppose you need to determine the list of upcoming projects with no manager and team member assigned to them in MySQL --
+SELECT
+	pr.proj_id, pr.proj_name, pr.domain, pr.status
+FROM 
+	proj_db.proj_records AS pr
+WHERE 
+	pr.proj_id NOT IN
+		(SELECT DISTINCT pa.proj_id
+		FROM proj_db.proj_assign AS pa)
+AND
+	pr.status IN ("YTS");
+    
 
                 
 
