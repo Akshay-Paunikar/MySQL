@@ -1391,7 +1391,16 @@ FROM
 WHERE
 	er.experience <= ALL (SELECT AVG(experience) FROM proj_db.emp_records);
 
-
+-- Subquery With EXISTS or NOT EXISTS Operators --
+-- Suppose you need to print the names of all the projects only if even one project is assigned to any employee in MySQL. --
+SELECT 
+	proj_name
+FROM 
+	proj_db.proj_records
+WHERE 
+	EXISTS (
+		SELECT proj_id FROM proj_db.proj_assign)
+	ORDER BY proj_id;
 
     
 
