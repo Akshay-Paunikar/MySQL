@@ -1351,6 +1351,16 @@ WHERE
 AND
 	pr.status IN ("YTS");
     
+-- Subquery with Comparison Operators --
+-- Suppose you need to determine the employee with the highest experience in the organization in MySQL. --
+SELECT
+	er.emp_id, CONCAT(er.first_name, ' ', er.last_name) AS full_name, er.role, er.department
+FROM 
+	proj_db.emp_records AS er
+WHERE
+	er.experience = (SELECT MAX(experience) FROM proj_db.emp_records);
+
+    
 
                 
 
