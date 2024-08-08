@@ -1382,6 +1382,15 @@ WHERE
 	er.experience >= ANY (SELECT AVG(experience) FROM proj_db.emp_records)
 LIMIT 5;
 
+-- Subquery With ALL Operator --
+-- Suppose you need to determine all the employees with less than the average experience of all employees in MySQL. --
+SELECT
+	er.emp_id, CONCAT(er.first_name, ' ', er.last_name) AS full_name, er.role, er.department, er.experience
+FROM 
+	proj_db.emp_records AS er
+WHERE
+	er.experience <= ALL (SELECT AVG(experience) FROM proj_db.emp_records);
+
 
 
     
