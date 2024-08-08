@@ -1359,6 +1359,20 @@ FROM
 	proj_db.emp_records AS er
 WHERE
 	er.experience = (SELECT MAX(experience) FROM proj_db.emp_records);
+    
+-- Subquery With IN and NOT IN Operators --
+-- Suppose you need to determine the list of all managers who have not been assigned to any projects in the organization in MySQL. --
+SELECT
+	er.emp_id, er.first_name, er.last_name, er.role, er.department
+FROM
+	proj_db.emp_records AS er
+WHERE 
+	er.emp_id NOT IN
+		(SELECT DISTINCT pa.emp_id FROM proj_db.proj_assign AS pa)
+AND
+	er.role IN ("MANAGER");
+    
+
 
     
 
