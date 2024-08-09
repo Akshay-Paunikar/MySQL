@@ -1006,7 +1006,12 @@ VALUES
 ('P204', 'Supply Chain Management', 'AUTOMOTIVE', '2021-07-15', '2021-09-28', 'Q2', 'WIP'),
 ('P406', 'Customer Sentiment Analysis', 'RETAIL', '2021-07-09', '2021-09-24', 'Q2', 'WIP'),
 ('P302', 'Early Detection of Lung Cancer', 'HEALTHCARE', '2021-10-08', '2021-12-18', 'Q3', 'YTS'),
-('P201', 'Self Driving Cars', 'AUTOMOTIVE', '2022-01-12', '2022-03-30', 'Q4', 'YTS');
+('P201', 'Self Driving Cars', 'AUTOMOTIVE', '2022-01-12', '2022-03-30', 'Q4', 'YTS'),
+('P501', 'Financial Chatbot', 'FINANCE', '2021-06-01', '2021-08-31', 'Q2', 'YTS'),
+('P601', 'Identify Shelf Life', 'RETAIL', '2021-04-01', '2021-06-30', 'Q1', 'DELAYED'),
+('P701', 'Driver Drowsiness Detection', 'AUTOMOTIVE', '2021-10-01', '2021-12-31', 'Q3', 'YTS'),
+('P801', 'Health Insurance Fraud Detection', 'HEALTHCARE', '2022-01-01', '2022-03-29', 'Q4', 'DELAYED');
+
 
 CREATE TABLE IF NOT EXISTS proj_assign(
 emp_id VARCHAR(4) NOT NULL,
@@ -1421,7 +1426,15 @@ WHERE
 		SELECT DISTINCT proj_id FROM proj_db.proj_assign)
 ORDER BY proj_id, domain;
 
-
+-- Subquery With INSERT Statement --
+-- 
+SELECT
+	pr.proj_id
+FROM
+	proj_db.proj_records AS pr
+WHERE
+	pr.proj_id IN (
+		SELECT pa.proj_id FROM proj_db.proj_assign AS pa);
 
 
 
