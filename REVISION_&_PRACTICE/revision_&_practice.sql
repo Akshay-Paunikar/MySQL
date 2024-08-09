@@ -1012,7 +1012,6 @@ VALUES
 ('P701', 'Driver Drowsiness Detection', 'AUTOMOTIVE', '2021-10-01', '2021-12-31', 'Q3', 'YTS'),
 ('P801', 'Health Insurance Fraud Detection', 'HEALTHCARE', '2022-01-01', '2022-03-29', 'Q4', 'DELAYED');
 
-
 CREATE TABLE IF NOT EXISTS proj_assign(
 emp_id VARCHAR(4) NOT NULL,
 manager_id VARCHAR(4) NOT NULL,
@@ -1450,6 +1449,15 @@ WHERE pr.proj_id NOT IN (
 
 SELECT * FROM proj_db.proj_records_bkup;
 
+-- Subquery With UPDATE Statement --
+-- Suppose you need to change the development quarter along with its start and closure dates for one of the projects in the PROJ_RECORDS_BKUP table in MySQL. --
+UPDATE proj_db.proj_records_bkup
+	SET dev_qtr = "Q1"
+WHERE
+	start_date = (
+		SELECT start_date FROM proj_db.proj_records WHERE proj_id = "P103")
+	AND closure_date = (
+		SELECT closure_date FROM proj_db.proj_records WHERE proj_id = "P103");
 
 
 
