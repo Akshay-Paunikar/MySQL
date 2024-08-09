@@ -1470,3 +1470,25 @@ WHERE proj_id IN (
 
 SELECT * FROM proj_db.proj_records_bkup;
 
+-- -------------- --
+-- Derived Tables --
+-- -------------- --
+/*
+A derived table is a virtual table returned by a SELECT statement.
+A derived table is created by using a stand-alone subquery in the FROM clause of a SELECT statement.
+It is mandatory for a derived table to have an alias so that it can be referenced in the query.
+MySQL raises an error in the absence of an alias for a derived table.
+*/
+
+-- Your manager wants you to find the total number of managers in the organization. --
+SELECT
+	COUNT(DISTINCT emp_id) AS manager_count
+FROM
+	(SELECT DISTINCT emp_id FROM proj_db.emp_records
+    WHERE role IN ("MANAGER")) AS employees
+WHERE
+	emp_id = employees.emp_id;
+
+
+
+
