@@ -1427,19 +1427,28 @@ WHERE
 ORDER BY proj_id, domain;
 
 -- Subquery With INSERT Statement --
--- 
-SELECT
-	pr.proj_id
-FROM
-	proj_db.proj_records AS pr
-WHERE
-	pr.proj_id IN (
-		SELECT pa.proj_id FROM proj_db.proj_assign AS pa);
+-- Suppose you need to back up the data of all those projects which have no employee assigned into the new PROJ_RECORDS_BKUP table in MySQL. --
+-- First we will create a backup table to store our results --
+CREATE TABLE IF NOT EXISTS proj_db.proj_records_bkup (
+	PROJ_ID VARCHAR(4) NOT NULL CHECK (SUBSTR(PROJ_ID,1,1) = 'P'),
+	PROJ_NAME VARCHAR(200) NOT NULL,
+	DOMAIN VARCHAR(100) NOT NULL,
+	START_DATE DATE NOT NULL CHECK (START_DATE >= '2021-04-01'),
+	CLOSURE_DATE DATE NOT NULL CHECK (CLOSURE_DATE <= '2022-03-30'),
+	DEV_QTR VARCHAR(2) NOT NULL,
+	STATUS VARCHAR(7),
+	CONSTRAINT chk_qtr_2 CHECK (DEV_QTR IN ('Q1', 'Q2', 'Q3', 'Q4')),
+	CONSTRAINT chk_status_2 CHECK (STATUS IN ('YTS', 'WIP', 'DONE', 'DELAYED'))
+) ENGINE=INNODB;
 
+DESCRIBE proj_db.proj_records_bkup;
 
+INSERT INTO proj_db.proj_records_bkup
+SELECT * FROM proj_db.proj_records AS pr
+WHERE pr.proj_id NOT IN (
+	SELECT DISTINCT pa.proj_id FROM proj_db.proj_assign AS pa);
 
-
-
+SELECT * FROM proj_db.proj_records_bkup;
 
 
 
