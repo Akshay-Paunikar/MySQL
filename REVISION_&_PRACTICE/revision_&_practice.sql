@@ -1489,6 +1489,31 @@ FROM
 WHERE
 	emp_id = employees.emp_id;
 
+-- EXISTS Operator --
+/* The EXISTS operator is a Boolean operator that returns true or false and is frequently used to check if rows returned by a subquery exist.*/
+-- Problem Statement: Your manager wants you to provide the basic information of all the managers in the organization. --
 
+SELECT 
+	er.emp_id, er.first_name, er.last_name, er.department, er.role
+FROM 
+	proj_db.emp_records AS er
+WHERE 
+	EXISTS (
+		SELECT 1 FROM proj_db.emp_records WHERE role IN ("MANAGER"))
+AND role IN ("MANAGER"); 
+
+-- NOT EXISTS Operator --
+/* Alternatively, the NOT EXISTS operator is the opposite of EXISTS operator. */
+/* Problem Statement: Your manager wants you to provide the basic information of all the 
+employees with one year or less than one year of experience in the organization. */
+
+SELECT 
+	er.emp_id, er.first_name, er.last_name, er.department, er.role, er.experience
+FROM 
+	proj_db.emp_records AS er
+WHERE 
+	NOT EXISTS (
+		SELECT 1 FROM proj_db.emp_records WHERE experience < 0)
+AND experience <= 1;
 
 
