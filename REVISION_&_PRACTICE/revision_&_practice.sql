@@ -1452,12 +1452,21 @@ SELECT * FROM proj_db.proj_records_bkup;
 -- Subquery With UPDATE Statement --
 -- Suppose you need to change the development quarter along with its start and closure dates for one of the projects in the PROJ_RECORDS_BKUP table in MySQL. --
 UPDATE proj_db.proj_records_bkup
-	SET dev_qtr = "Q1"
+	SET DEV_QTR = "Q1"
 WHERE
-	start_date = (
+	START_DATE = (
 		SELECT start_date FROM proj_db.proj_records WHERE proj_id = "P103")
-	AND closure_date = (
+	AND CLOSURE_DATE = (
 		SELECT closure_date FROM proj_db.proj_records WHERE proj_id = "P103");
 
+-- Subquery With DELETE Statement --
+-- Let us say you need to remove a project from the PROJ_RECORDS_BKUP table that has the status YTS in the PROJ_RECORDS table in MySQL. --
 
+DELETE FROM proj_db.proj_records_bkup
+WHERE proj_id IN (
+	SELECT pr.proj_id FROM proj_db.proj_records AS pr
+    WHERE pr.status = "YTS"
+    GROUP BY pr.status);
+
+SELECT * FROM proj_db.proj_records_bkup;
 
